@@ -16,10 +16,16 @@ then
 	exit 1
 fi
 
-if [ ! -x "$JPEGTRAN" ]
+if ! type "$JPEGTRAN" 1>/dev/null 2>&1
 then
-	echo "jpegtran not found or not executable!" 1>&2
-	exit 2
+    echo "jpegtran not found or not executable!" 1>&2
+    exit 2
+fi
+
+if ! type "identify" 1>/dev/null 2>&1
+then
+    echo "ImageMagick not found!" 1>&2
+    exit 2
 fi
 
 if ! echo "$1" | grep -q 'SCR([0-9],[0-9],[0-9])'
