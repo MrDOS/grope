@@ -8,7 +8,7 @@
 # http://z2-ec2.images-amazon.com/R/1/a=B0011Z1BII+c=A17SFUTIVB227Z+d=_SCR(3,2,0)_+o=01+s=RMTILE+va=MAIN+ve=391313817+e=.jpg
 # (Yes, the whole thing.)
 
-JPEGTRAN=/home/axeradio/Downloads/jpegtran
+JPEGTRAN=jpegtran
 
 if [ $# -lt 2 ]
 then
