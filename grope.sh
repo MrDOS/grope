@@ -8,7 +8,7 @@
 # http://z2-ec2.images-amazon.com/R/1/a=B0011Z1BII+c=A17SFUTIVB227Z+d=_SCR(3,2,0)_+o=01+s=RMTILE+va=MAIN+ve=391313817+e=.jpg
 # (Yes, the whole thing.)
 
-JPEGTRAN=~/bin/jpegtran
+JPEGTRAN=jpegtran
 
 PIECES=4
 WIDTH=`expr $PIECES - 1`
@@ -20,10 +20,16 @@ then
 	exit 1
 fi
 
-if [ ! -x "$JPEGTRAN" ]
+if ! type "$JPEGTRAN" 1>/dev/null 2>&1
 then
-	echo "jpegtran not found or not executable!" 1>&2
-	exit 2
+    echo "jpegtran not found or not executable!" 1>&2
+    exit 2
+fi
+
+if ! type "identify" 1>/dev/null 2>&1
+then
+    echo "ImageMagick not found!" 1>&2
+    exit 2
 fi
 
 if ! echo "$1" | grep -q 'SCR([0-9],[0-9],[0-9])'
